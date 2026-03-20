@@ -1,23 +1,27 @@
-from traceback import print_tb
-
 from node import Node
 from problem import *
+import random
 
+ACTION_COST = 1
+
+prob = Problem(ANDRIA, BARI)
 root_node = Node(ANDRIA, None, None, 0)
-node1 = Node(CORATO, GO_TO_CORATO, root_node, 5)
-node2 = Node(RUVO, GO_TO_RUVO, node1, 10)
 
-print(node2.path())
-print(node1.path())
-print(root_node.path())
+node = root_node
+for _ in range(5):
+    action = random.choice(prob.actions(node._state))
+    new_state = prob.result(node._state, action)
+    node = Node(new_state, action, node, node._cost + ACTION_COST)
 
-path = []
-node = node2
-while True:
-    if node is None:
-        break
-    path.append(node._action)
-    node = node._parent
+path = node.path()
 print(path)
-path = path[:-1][::-1]
-print(path)
+
+exploration, result = prob.explore(path)
+if result:
+    print('Solution found!')
+
+for step_type, step in exploration:
+    if step_type == 'S':
+        print(f'|{step}|', end='')
+    elif step_type == 'A':
+        print(f'--{step}-->', end='')

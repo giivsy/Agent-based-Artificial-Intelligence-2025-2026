@@ -17,3 +17,4 @@ class Node:
         parent_path = self._parent.path()
         parent_path.append(self._action)
         return parent_path
+

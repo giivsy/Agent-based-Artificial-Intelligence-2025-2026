@@ -63,6 +63,8 @@ class Problem:
             return ALTAMURA
         elif action == GO_TO_RUVO:
             return RUVO
+        elif action == GO_TO_CORATO:
+            return CORATO
         elif action == GO_TO_BISCEGLIE:
             return BISCEGLIE
         elif action == GO_TO_MODUGNO:
@@ -72,3 +74,14 @@ class Problem:
         else:
             raise ValueError('Invalid action')
 
+    def explore(self, path):
+        state = self._initial_state
+        evolution = [('S',state)]
+        is_solution = False
+        for action in path:
+            evolution.append(('A',action))
+            state = self.result(state, action)
+            evolution.append(('S',state))
+        if state == self._goal_state:
+            is_solution = True
+        return evolution, is_solution
