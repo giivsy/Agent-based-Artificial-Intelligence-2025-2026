@@ -1,4 +1,4 @@
-from problem import *
+from street_problem import *
 
 def test_result():
     problem = Problem(ANDRIA, CORATO)

@@ -1,5 +1,5 @@
 from node import Node
-from problem import *
+from street_problem import *
 
 root_node = Node(ANDRIA, None, None, 0)
 node1 = Node(CORATO, GO_TO_CORATO, root_node, 5)

@@ -1,20 +1,20 @@
-from problem import *
+from street_problem import *
 
 class Node:
 
     def __init__(self, state, action, parent, path_cost):
-        self._state = state
-        self._action = action
-        self._parent = parent
-        self._cost = path_cost
+        self.state = state
+        self.action = action
+        self.parent = parent
+        self.cost = path_cost
 
     def __repr__(self):
-        return f"([NODE] State: {self._state}, Action: {self._action}, Parent: {self._parent._state}, Cost: {self._cost})"
+        return f"([NODE] State: {self.state}, Action: {self.action}, Parent: {self.parent._state}, Cost: {self.cost})"
 
     def path(self):
-        if self._parent is None:
+        if self.parent is None:
             return []
-        parent_path = self._parent.path()
-        parent_path.append(self._action)
+        parent_path = self.parent.path()
+        parent_path.append(self.action)
         return parent_path
 
